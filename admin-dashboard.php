@@ -4,75 +4,14 @@
 <head>
     <?php include_once("inc/head.php"); ?>
     <title>Admin Dashboard</title>
-    <style>
-        /* Add your custom styles here */
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .sidebar {
-            background-color: #343a40;
-            color: #ffffff;
-            height: 650px;
-        }
-
-        .content {
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left: 20px;">
-        <a class="navbar-brand" href="admin-dashboard">Admin Dashboard</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse ml-auto" id="navbarNav" style="margin-left: 1000px;">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <img src="assets/img/admin/profil.jpg" alt="Admin Profile" class="profile-photo">
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="admin-dashboard"><?php echo($_SESSION["user"]) ?></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?user=logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php include_once("inc/admin/header.php") ?>
 
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
-            <nav class="col-md-2 d-none d-md-block sidebar">
-                <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <i class="fas fa-tachometer-alt"></i> Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-users"></i> Trainers
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-users"></i> Clients
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin-dashboard">
-                                <i class="fas fa-cogs"></i> Settings
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <?php include_once("inc/admin/sidebar.php") ?>
 
             <!-- Main Content -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">

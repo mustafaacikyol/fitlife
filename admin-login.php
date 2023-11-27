@@ -20,7 +20,7 @@
                         if ($check_arr) {
                             $name_surname      = $check_arr["name"] . " " . $check_arr["surname"];
                             $id                = $check_arr["id"];
-                            $_SESSION["user"]  = $name_surname;
+                            $_SESSION["admin"]  = $name_surname;
                             $_SESSION["id"]    = $id;
                             header("location:admin-dashboard");
                         } else {
