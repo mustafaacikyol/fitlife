@@ -10,7 +10,8 @@ if ($_GET["user"]=="logout") {
 
 //Oturum açık değilse giris.php sayfasına gönder
 
-if ($_SESSION["admin"] == "" and $_SESSION["id"] == "") {
+if ($_SESSION["admin"] == "") {
     header("location:index");
 }
+
 ?>

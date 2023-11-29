@@ -10,17 +10,44 @@
         <div class="card admin-login-margin-top">
             <div class="card-body">
                 <h2 class="text-center mb-4">Trainer Log In</h2>
-                <form>
+                <?php
+                    if (isset($_POST["login_btn"])) {
+
+                        $check = $conn->prepare("select id, name, surname, email, password from trainer where email=:email and password=:password");
+                        $check->execute(array("email" => $_POST["email"], "password" => md5($_POST["password"])));
+                        $result = $check->fetch(PDO::FETCH_ASSOC);
+                        
+                        if ($result) {
+                            $name_surname      = $result["name"] . " " . $result["surname"];
+                            $id                = $result["id"];
+                            $_SESSION["trainer"]  = $name_surname;
+                            $_SESSION["id"]    = $id;
+                            header("location:trainer-dashboard");
+                        } else {
+                            echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
+                            <em class='icon ni ni-cross-circle'></em> 
+                            <strong>Email or password incorrect!</strong>
+                        </div>";
+                        }
+                        
+                    }
+                ?>
+                <form action="" method="POST">
                     <div class="form-group mb-3">
-                        <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your username">
+                        <label for="email">E-Mail:</label>
+                        <input type="text" class="form-control" id="email" name="email" value="<?php echo $_POST['email'] ?>" placeholder="Enter your e-mail">
                     </div>
                     <div class="form-group mb-4">
                         <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+                    </div>
+                    <div class="text-center mb-4">
+                        <button class="btn btn-primary btn-block" type="submit" name="login_btn">Log In</button>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                        <a href="trainer-forgot-password" class="btn btn-dark btn-block">
+                            Forgot Password
+                        </a>
                     </div>
                 </form>
             </div>

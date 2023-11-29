@@ -11,26 +11,26 @@
             if(isset($_POST["reset_btn"])){
                 if($_POST["password"] == $_POST["password2"]){
                     $update   = $conn->prepare("update admin set password=:password where email=:email");
-                    $sonuc      = $update->execute(array("email" => $_POST["email"], "password" => md5($_POST["password"])));
+                    $result      = $update->execute(array("email" => $_POST["email"], "password" => md5($_POST["password"])));
 
-                    if ($sonuc) {
+                    if ($result) {
 
                         echo "<div class='alert alert-icon alert-success' role='alert'>
                                         <em class='icon ni ni-check-circle'></em> 
-                                        <strong>your password has been reset</strong> 
+                                        <strong>Your password has been reset</strong> 
                                     </div>";
                         header("refresh:1;url=admin-login");
                     } else {
                         echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                                     <em class='icon ni ni-cross-circle'></em> 
-                                    <strong>transaction failed!</strong>
+                                    <strong>Password reset failed!</strong>
                                 </div>";
                     }
 
                 }else {
                     echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                     <em class='icon ni ni-cross-circle'></em> 
-                    <strong>password and password again must be the same!</strong>
+                    <strong>Password and password again must be the same!</strong>
                     </div>";
                 }
             }

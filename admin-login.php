@@ -24,7 +24,10 @@
                             $_SESSION["id"]    = $id;
                             header("location:admin-dashboard");
                         } else {
-                            echo "<span class='text-danger d-inline-block mb-3'>email or password incorrect</span>";
+                            echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
+                            <em class='icon ni ni-cross-circle'></em> 
+                            <strong>Email or password incorrect!</strong>
+                        </div>";
                         }
                         
                     }
@@ -42,7 +45,7 @@
                         <button class="btn btn-primary btn-block" type="submit" name="login_btn">Log In</button>
                     </div>
                     <div class="text-center">
-                        <a href="forgot-password" class="btn btn-dark btn-block">
+                        <a href="admin-forgot-password" class="btn btn-dark btn-block">
                             Forgot Password
                         </a>
                     </div>

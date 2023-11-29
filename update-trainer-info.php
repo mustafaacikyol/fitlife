@@ -1,6 +1,6 @@
 <?php 
     include_once("inc/db_connect.php");
-    $query = $conn->prepare("select name, surname, birthdate, gender, email, phone_number, profile_photo, password from admin where id=:id");
+    $query = $conn->prepare("select name, surname, birthdate, gender, email, phone_number, profile_photo, password from trainer where id=:id");
     $query->execute(array("id" => $_SESSION["id"]));
     $result = $query->fetch(PDO::FETCH_ASSOC);
  ?>
@@ -8,15 +8,15 @@
 <html lang="en">
 <head>
     <?php include_once("inc/head.php"); ?>
-    <title>Update Admin</title>
+    <title>Update Trainer Info</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
-    <?php include_once("inc/admin/header.php") ?>
+    <?php include_once("inc/trainer/header.php") ?>
 
     <div class="container-fluid">
         <div class="row">
-            <?php include_once("inc/admin/sidebar.php") ?>
+            <?php include_once("inc/trainer/sidebar.php") ?>
            
             <!-- Main Content -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
@@ -26,19 +26,19 @@
 
                             if ($_POST["password"] == "" and $_POST["password_again"] == "") {
 
-                                $update   = $conn->prepare("update admin set name=:name, surname=:surname, birthdate=:birthdate, gender=:gender, email=:email, phone_number=:phone_number where id=:id");
-                                $update_result      = $update->execute(array("id" => $_SESSION["id"], "name" => $_POST["name"], "surname" => $_POST["surname"], "birthdate" => $_POST["birthdate"], "gender" => $_POST["gender"], "email" => $_POST["email"], "phone_number" => $_POST["phone_number"]));
+                                $update = $conn->prepare("update trainer set name=:name, surname=:surname, birthdate=:birthdate, gender=:gender, email=:email, phone_number=:phone_number where id=:id");
+                                $update_result = $update->execute(array("id" => $_SESSION["id"], "name" => $_POST["name"], "surname" => $_POST["surname"], "birthdate" => $_POST["birthdate"], "gender" => $_POST["gender"], "email" => $_POST["email"], "phone_number" => $_POST["phone_number"]));
 
                                 if ($update_result) {
                                     $name_surname      = $_POST["name"] . " " . $_POST["surname"];
-                                    $_SESSION["admin"] = $name_surname;
+                                    $_SESSION["trainer"] = $name_surname;
                                     echo "<div class='alert alert-icon alert-success' role='alert'>
                                                 <em class='icon ni ni-check-circle'></em> 
-                                                <strong>Your information updated.</strong> 
+                                                <strong>Your information updated.</strong>
                                             </div>";
-                                    header("refresh:1;url=admin-dashboard");
+                                    header("refresh:1;url=trainer-information");
                                 }
-                            } elseif ($_POST["sifre"] !== "" and $_POST["sifre_tekrar"] !== "") {
+                            } elseif ($_POST["password"] !== "" and $_POST["password_again"] !== "") {
 
                                 if ($_POST["password"] !== $_POST["password_again"]) {
                                     echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
@@ -46,20 +46,20 @@
                                             <strong>Password and Password Again must be the same!</strong>
                                         </div>";
                                 } else {
-                                    $update   = $conn->prepare("update admin set name=:name, surname=:surname, birthdate=:birthdate, gender=:gender, email=:email, phone_number=:phone_number, password=:password  where id=:id");
+                                    $update = $conn->prepare("update trainer set name=:name, surname=:surname, birthdate=:birthdate, gender=:gender, email=:email, phone_number=:phone_number, password=:password  where id=:id");
                                     $update->execute(array("id" => $_SESSION["id"], "name" => $_POST["name"], "surname" => $_POST["surname"], "birthdate" => $_POST["birthdate"], "gender" => $_POST["gender"], "email" => $_POST["email"], "phone_number" => $_POST["phone_number"], "password" => md5($_POST["password"])));
                                     $name_surname      = $_POST["name"] . " " . $_POST["surname"];
-                                    $_SESSION["admin"] = $name_surname;
+                                    $_SESSION["trainer"] = $name_surname;
                                     echo "<div class='alert alert-icon alert-success' role='alert'>
                                                 <em class='icon ni ni-check-circle'></em> 
                                                 <strong>Your information updated.</strong>
                                             </div>";
-                                    header("refresh:1;url=admin-dashboard");
+                                    header("refresh:1;url=trainer-information");
                                 }
                             } else {
                                 echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                                             <em class='icon ni ni-cross-circle'></em> 
-                                            <strong>Your information cannot be updated!</strong>
+                                            <strong>Your information cannot be updated!</strong> 
                                         </div>";
                             }
                         }
