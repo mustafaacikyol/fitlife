@@ -14,7 +14,7 @@
                 <div class="dropdown-menu" aria-labelledby="trainersDropdown">
                     <!-- Dropdown items for Trainers go here -->
                     <a class="dropdown-item" href="generate-trainer">Generate</a>
-                    <a class="dropdown-item" href="#">Display</a>
+                    <a class="dropdown-item" href="trainers">Display</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Another Trainer</a>
                 </div>
@@ -25,8 +25,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="clientsDropdown">
                     <!-- Dropdown items for Clients go here -->
-                    <a class="dropdown-item" href="#">Generate</a>
-                    <a class="dropdown-item" href="#">Display</a>
+                    <a class="dropdown-item" href="generate-client">Generate</a>
+                    <a class="dropdown-item" href="clients">Display</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Another Client</a>
                 </div>

@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <?php include_once("inc/head.php"); ?>
-    <title>Generate Trainer</title>
+    <title>Generate Client</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
@@ -41,17 +41,17 @@
                                     } elseif ($extension!="jpg" and $extension!="png" and $extension!="gif" and $extension!="jpeg") {
                                         echo "<p class='text-center text-danger'>ERROR : The extension of your selected image must be jpg, gif, png, jpeg!</p>";
                                     } else {
-                                        $generate = $conn->prepare("insert into trainer set name=:name, surname=:surname, birthdate=:birthdate, gender=:gender, email=:email, phone_number=:phone_number, password=:password, profile_photo=:profile_photo");
+                                        $generate = $conn->prepare("insert into client set name=:name, surname=:surname, birthdate=:birthdate, gender=:gender, email=:email, phone_number=:phone_number, password=:password, profile_photo=:profile_photo");
                                         $generate_result = $generate->execute(array("name" => $_POST["name"], "surname" => $_POST["surname"], "birthdate" => $_POST["birthdate"], "gender" => $_POST["gender"], "email" => $_POST["email"], "phone_number" => $_POST["phone_number"], "password" => md5($_POST["password"]), "profile_photo" => $image_name));
             
-                                        $upload   = move_uploaded_file($tmp_name, "assets/img/trainer/$image_name");
+                                        $upload   = move_uploaded_file($tmp_name, "assets/img/client/$image_name");
             
                                         if (isset($upload)) {
                                             echo "<div class='alert alert-icon alert-success' role='alert'>
                                             <em class='icon ni ni-check-circle'></em> 
                                             <strong>User added successfully</strong> 
                                             </div>";
-                                            header("refresh:1;trainers");
+                                            header("refresh:1;clients");
                                         } else {
                                             echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                                             <em class='icon ni ni-cross-circle'></em> 
@@ -61,7 +61,7 @@
                                     }
                                 }    
                             }elseif ($_POST["name"] and $_POST["surname"] and $_POST["birthdate"] and $_POST["gender"] and $_POST["email"] and $_POST["phone_number"] and $_POST["password"] and $_POST["password_again"]) {
-                                $generate = $conn->prepare("insert into trainer set name=:name, surname=:surname, birthdate=:birthdate, gender=:gender, email=:email, phone_number=:phone_number, password=:password");
+                                $generate = $conn->prepare("insert into client set name=:name, surname=:surname, birthdate=:birthdate, gender=:gender, email=:email, phone_number=:phone_number, password=:password");
                                 $generate_result = $generate->execute(array("name" => $_POST["name"], "surname" => $_POST["surname"], "birthdate" => $_POST["birthdate"], "gender" => $_POST["gender"], "email" => $_POST["email"], "phone_number" => $_POST["phone_number"], "password" => md5($_POST["password"])));
     
                                 if ($generate_result) {
@@ -69,7 +69,7 @@
                                                 <em class='icon ni ni-check-circle'></em> 
                                                 <strong>User added successfully</strong>. 
                                             </div>";
-                                    header("refresh:1;url=trainers");
+                                    header("refresh:1;url=clients");
                                 } else {
                                     echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                                                 <em class='icon ni ni-cross-circle'></em> 
