@@ -1,4 +1,6 @@
-<?php include_once("inc/db_connect.php"); ?>
+<?php 
+    include_once("inc/db_connect.php"); 
+?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -9,32 +11,43 @@
     <div class="text-center success">
         <?php
             if(isset($_POST["reset_btn"])){
-                if($_POST["password"] == $_POST["password2"]){
-                    $update   = $conn->prepare("update admin set password=:password where email=:email");
-                    $result      = $update->execute(array("email" => $_POST["email"], "password" => md5($_POST["password"])));
 
-                    if ($result) {
+                $check = $conn->prepare("select email from admin where email=:email");
+                $check->execute(array("email" => $_POST["email"]));
+                $result = $check->fetch(PDO::FETCH_ASSOC);
 
-                        echo "<div class='alert alert-icon alert-success' role='alert'>
-                                        <em class='icon ni ni-check-circle'></em> 
-                                        <strong>Your password has been reset</strong> 
+                if($result) {
+                    if($_POST["password"] == $_POST["password2"]){
+                        $update   = $conn->prepare("update admin set password=:password where email=:email");
+                        $result      = $update->execute(array("email" => $_POST["email"], "password" => md5($_POST["password"])));
+    
+                        if ($result) {
+    
+                            echo "<div class='alert alert-icon alert-success' role='alert'>
+                                            <em class='icon ni ni-check-circle'></em> 
+                                            <strong>Your password has been reset</strong> 
+                                        </div>";
+                            header("refresh:1;url=admin-login");
+                        } else {
+                            echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
+                                        <em class='icon ni ni-cross-circle'></em> 
+                                        <strong>Password reset failed!</strong>
                                     </div>";
-                        header("refresh:1;url=admin-login");
-                    } else {
+                        }
+    
+                    }else {
                         echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
-                                    <em class='icon ni ni-cross-circle'></em> 
-                                    <strong>Password reset failed!</strong>
-                                </div>";
+                        <em class='icon ni ni-cross-circle'></em> 
+                        <strong>Password and password again must be the same!</strong>
+                        </div>";
                     }
-
                 }else {
                     echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                     <em class='icon ni ni-cross-circle'></em> 
-                    <strong>Password and password again must be the same!</strong>
+                    <strong>This email does not exist in the system!</strong>
                     </div>";
-                }
+                } 
             }
-
         ?>
     </div>
     <div class="container h-100 d-flex justify-content-center align-items-center">

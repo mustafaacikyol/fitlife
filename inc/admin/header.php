@@ -18,7 +18,7 @@
                         <a class="dropdown-item" href="update-admin">Update Profile</a>
                         <a class="dropdown-item" href="change-admin-image">Change Image</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="?user=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                        <a class="dropdown-item" href="admin-dashboard?user=logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                     </div>
                 </li>
                 <li class="nav-item">

@@ -1,5 +1,5 @@
-<?php 
-    include_once("inc/db_connect.php"); 
+<?php
+    include_once("inc/db_connect.php");
 ?>
 <!DOCTYPE html>
 <html lang="tr">
@@ -12,13 +12,13 @@
         <?php
             if(isset($_POST["reset_btn"])){
 
-                $check = $conn->prepare("select email from trainer where email=:email");
+                $check = $conn->prepare("select email from client where email=:email");
                 $check->execute(array("email" => $_POST["email"]));
                 $result = $check->fetch(PDO::FETCH_ASSOC);
 
                 if($result) {
                     if($_POST["password"] == $_POST["password2"]){
-                        $update   = $conn->prepare("update trainer set password=:password where email=:email");
+                        $update   = $conn->prepare("update client set password=:password where email=:email");
                         $result      = $update->execute(array("email" => $_POST["email"], "password" => md5($_POST["password"])));
     
                         if ($result) {
@@ -27,7 +27,7 @@
                                             <em class='icon ni ni-check-circle'></em> 
                                             <strong>Your password has been reset</strong> 
                                         </div>";
-                            header("refresh:1;url=trainer-login");
+                            header("refresh:1;url=client-login");
                         } else {
                             echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                                         <em class='icon ni ni-cross-circle'></em> 

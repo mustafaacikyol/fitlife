@@ -1,23 +1,23 @@
 <?php 
-    include_once("inc/db_connect.php"); 
-    include_once("inc/admin/session.php");
-    $query = $conn->prepare("select name, surname, birthdate, gender, email, phone_number, profile_photo, password from admin where id=:id");
-    $query->execute(array("id" => $_SESSION["id"]));
+    include_once("inc/db_connect.php");
+    include_once("inc/client/session.php");
+    $query = $conn->prepare("select name, surname, birthdate, gender, email, phone_number, profile_photo, password from client where id=:id");
+    $query->execute(array("id" => $_SESSION["client_id"]));
     $result = $query->fetch(PDO::FETCH_ASSOC);
  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <?php include_once("inc/head.php"); ?>
-    <title>Change Admin Image</title>
+    <title>Change Client Image</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
-    <?php include_once("inc/admin/header.php") ?>
+    <?php include_once("inc/client/header.php") ?>
 
     <div class="container-fluid">
         <div class="row">
-            <?php include_once("inc/admin/sidebar.php") ?>
+            <?php include_once("inc/client/sidebar.php") ?>
 
             <!-- Main Content -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
@@ -39,17 +39,17 @@
                         } elseif ($extension!="jpg" and $extension!="png" and $extension!="gif" and $extension!="jpeg") {
                             echo "<p class='text-center text-danger'>ERROR : The extension of your selected image must be jpg, gif, png, jpeg!</p>";
                         } else {
-                            $update = $conn -> prepare ("update admin set profile_photo=:profile_photo where id=:id");
-                            $result = $update   -> execute ( array("profile_photo"=>$image_name, "id"=>$_SESSION["id"]) );
+                            $update = $conn -> prepare ("update client set profile_photo=:profile_photo where id=:id");
+                            $result = $update   -> execute ( array("profile_photo"=>$image_name, "id"=>$_SESSION["client_id"]) );
 
-                            $upload   = move_uploaded_file($tmp_name, "assets/img/admin/$image_name");
+                            $upload   = move_uploaded_file($tmp_name, "assets/img/client/$image_name");
 
                             if (isset($upload)) {
                                 echo "<div class='alert alert-icon alert-success' role='alert'>
                                 <em class='icon ni ni-check-circle'></em> 
                                 <strong>Image updated.</strong> 
                                 </div>";
-                                header("refresh:1;admin-dashboard");
+                                header("refresh:1;client-dashboard");
                             } else {
                                 echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                                 <em class='icon ni ni-cross-circle'></em> 

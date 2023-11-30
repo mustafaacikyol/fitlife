@@ -1,5 +1,6 @@
 <?php 
     include_once("inc/db_connect.php");
+    include_once("inc/trainer/session.php");
     $query = $conn->prepare("select name, surname, birthdate, gender, email, phone_number, profile_photo, password from trainer where id=:id");
     $query->execute(array("id" => $_SESSION["id"]));
     $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -8,7 +9,7 @@
 <html lang="en">
 <head>
     <?php include_once("inc/head.php"); ?>
-    <title>Change Admin Image</title>
+    <title>Change Trainer Image</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
@@ -72,10 +73,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <?php include_once("inc/dashboard_js.php") ?>
 
 </body>
 </html>
