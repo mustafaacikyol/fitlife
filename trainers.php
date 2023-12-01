@@ -40,6 +40,8 @@
                             <?php
                                 $update = $conn -> prepare("update trainer set state=:state where id=:id");
                                 $update -> execute (array("state" => $_GET["state"], "id" => $_GET["id"]));
+                                $delete_trainer_expertise =  $conn ->  prepare("delete from trainer_expertise where trainer_id=:trainer_id");
+                                $delete_trainer_expertise -> execute (array("trainer_id" => $_GET["del_id"]));
                                 $delete =  $conn ->  prepare("delete from trainer where id=:id");
                                 $delete -> execute (array("id" => $_GET["del_id"]));
                                 $counter  =   1;

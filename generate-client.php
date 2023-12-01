@@ -48,6 +48,12 @@
                                         $upload   = move_uploaded_file($tmp_name, "assets/img/client/$image_name");
             
                                         if (isset($upload)) {
+                                            $get_client_id = $conn->prepare("select id from client order by id desc limit 1");
+                                            $get_client_id->execute();
+                                            $client_id_result = $get_client_id->fetch(PDO::FETCH_ASSOC);
+                                            
+                                            $add_target = $conn->prepare("insert into client_target set client_id=:client_id, target_id=:target_id");
+                                            $add_target_result = $add_target->execute(array("client_id" => $client_id_result["id"], "target_id" => $_POST["target"]));
                                             echo "<div class='alert alert-icon alert-success' role='alert'>
                                             <em class='icon ni ni-check-circle'></em> 
                                             <strong>User added successfully</strong> 
@@ -66,6 +72,12 @@
                                 $generate_result = $generate->execute(array("name" => $_POST["name"], "surname" => $_POST["surname"], "birthdate" => $_POST["birthdate"], "gender" => $_POST["gender"], "email" => $_POST["email"], "phone_number" => $_POST["phone_number"], "password" => md5($_POST["password"])));
     
                                 if ($generate_result) {
+                                    $get_client_id = $conn->prepare("select id from client order by id desc limit 1");
+                                    $get_client_id->execute();
+                                    $client_id_result = $get_client_id->fetch(PDO::FETCH_ASSOC);
+                                    
+                                    $add_target = $conn->prepare("insert into client_target set client_id=:client_id, target_id=:target_id");
+                                    $add_target_result = $add_target->execute(array("client_id" => $client_id_result["id"], "target_id" => $_POST["target"]));
                                     echo "<div class='alert alert-icon alert-success' role='alert'>
                                                 <em class='icon ni ni-check-circle'></em> 
                                                 <strong>User added successfully</strong>. 
@@ -93,14 +105,43 @@
                             <input type="text" class="form-control" id="surname" name="surname" value="<?php echo $_POST['surname'] ?>" required>
                         </div>
                         <div class="form-group">
+                            <label class="form-label" for="target">Target</label>
+                            <span class="text-danger">*</span>
+                            <select id="target" name="target" class="form-control" required>
+                                <option value="">Select Target</option>
+                                <?php
+                                    $expertise = $conn -> prepare("select * from expertise order by id asc");
+                                    $expertise -> execute();
+
+                                    while ($expertise_result = $expertise->fetch(PDO::FETCH_ASSOC)) {
+
+                                        $id = $expertise_result["id"];
+                                        $name = $expertise_result["profession"];
+                                        if ($_POST["expertise"] == $expertise_result["id"]) {
+                                            $select = 'selected=""';
+                                        } else {
+                                            $select  = '';
+                                        }
+
+                                        echo "<option value='$id' $select>$name</option>";
+                                    }
+
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label class="form-label" for="birthdate">Birth Date</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" id="birthdate" name="birthdate" value="<?php echo $_POST['birthdate'] ?>" required>
+                            <input type="date" class="form-control" id="birthdate" name="birthdate" value="<?php echo $_POST['birthdate'] ?>" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="gender">Gender</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" id="gender" name="gender" value="<?php echo $_POST['gender'] ?>" required>
+                            <select id="gender" name="gender" class="form-control" required>
+                                <option value="">Select Gender</option>
+                                <option value="Female" <?php if($_POST['gender'] == "Female"){echo 'selected=""';} ?>>Female</option>
+                                <option value="Male" <?php if($_POST['gender'] == "Male"){echo 'selected=""';} ?>>Male</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="email">Email</label>
