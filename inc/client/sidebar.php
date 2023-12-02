@@ -7,6 +7,25 @@
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="trainerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-users"></i> Trainer
+                </a>
+                <div class="dropdown-menu" aria-labelledby="trainerDropdown">
+                    <!-- Dropdown items for Trainers go here -->
+                    <a class="dropdown-item" href="display-trainer">Information</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-users"></i> Message
+                </a>
+                <div class="dropdown-menu" aria-labelledby="messageDropdown">
+                    <!-- Dropdown items for Trainers go here -->
+                    <a class="dropdown-item" href="display-trainer">Incoming Message</a>
+                    <a class="dropdown-item" href="display-trainer">Send Message</a>
+                </div>
+            </li>
             
             <li class="nav-item">
                 <a class="nav-link" href="client-dashboard">

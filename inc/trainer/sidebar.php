@@ -13,7 +13,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="clientsDropdown">
                     <!-- Dropdown items for Clients go here -->
-                    <a class="dropdown-item" href="clients">Display</a>
+                    <a class="dropdown-item" href="display-clients">Display</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Another Client</a>
                 </div>

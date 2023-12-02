@@ -23,7 +23,7 @@
                     
                         <table class="border" style="width: 100%;">
                             <tr class="border">
-                                <th colspan="9" class="text-center py-2">CLIENTS</th>
+                                <th colspan="11" class="text-center py-2">CLIENTS</th>
                             </tr>
                             <tr>
                                 <th class="text-center border">Order</th>
