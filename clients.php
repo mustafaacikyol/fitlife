@@ -45,10 +45,10 @@
                                 $delete_client_target -> execute (array("client_id" => $_GET["del_id"]));
                                 $delete =  $conn ->  prepare("delete from client where id=:id");
                                 $delete -> execute (array("id" => $_GET["del_id"]));
-                                $counter  =   1;
-                                $client_info       =   $conn->prepare("select c.id, c.name, c.surname, c.birthdate, c.gender, c.email, c.phone_number, c.state, e.profession from client as c inner join client_target as ct on c.id=ct.client_id inner join expertise as e on ct.target_id=e.id order by c.id");
+                                $counter = 1;
+                                $client_info = $conn->prepare("select c.id, c.name, c.surname, c.birthdate, c.gender, c.email, c.phone_number, c.state, e.profession from client as c inner join client_target as ct on c.id=ct.client_id inner join expertise as e on ct.target_id=e.id order by c.id");
                                 $client_info->execute();
-                                while ($results    =   $client_info->fetch(PDO::FETCH_ASSOC)) {
+                                while ($results = $client_info->fetch(PDO::FETCH_ASSOC)) {
                             ?>
                                 <tr>
                                     <td class="text-center border"><?php echo $counter ; ?></td>

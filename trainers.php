@@ -46,9 +46,9 @@
                                 $delete =  $conn ->  prepare("delete from trainer where id=:id");
                                 $delete -> execute (array("id" => $_GET["del_id"]));
                                 $counter  =   1;
-                                $trainer_info       =   $conn->prepare("select t.id, t.name, t.surname, t.birthdate, t.gender, t.email, t.phone_number, t.state, e.profession from trainer as t inner join trainer_expertise as te on t.id=te.trainer_id inner join expertise as e on te.expertise_id=e.id order by t.id");
+                                $trainer_info = $conn->prepare("select t.id, t.name, t.surname, t.birthdate, t.gender, t.email, t.phone_number, t.state, e.profession from trainer as t inner join trainer_expertise as te on t.id=te.trainer_id inner join expertise as e on te.expertise_id=e.id order by t.id");
                                 $trainer_info->execute();
-                                while ($results    =   $trainer_info->fetch(PDO::FETCH_ASSOC)) {
+                                while ($results = $trainer_info->fetch(PDO::FETCH_ASSOC)) {
                             ?>
                                 <tr>
                                     <td class="text-center border"><?php echo $counter ; ?></td>
