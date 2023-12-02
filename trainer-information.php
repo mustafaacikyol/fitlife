@@ -1,7 +1,7 @@
 <?php 
     include_once("inc/db_connect.php");
     include_once("inc/trainer/session.php");
-    $query = $conn->prepare("select name, surname, birthdate, gender, email, phone_number, profile_photo, password from trainer where id=:id");
+    $query = $conn->prepare("select t.name, t.surname, t.birthdate, t.gender, t.email, t.phone_number, e.profession from trainer as t inner join trainer_expertise as te on t.id=te.trainer_id inner join expertise as e on te.expertise_id=e.id where t.id=:id");
     $query->execute(array("id" => $_SESSION["id"]));
     $result = $query->fetch(PDO::FETCH_ASSOC);
  ?>
@@ -30,6 +30,10 @@
                         <div class="form-group">
                             <label class="form-label" for="surname">Surname : </label>
                             <span><?php echo $result['surname'] ?></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="expertise">Expertise : </label>
+                            <span><?php echo $result['profession'] ?></span>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="birthdate">Birth Date : </label>

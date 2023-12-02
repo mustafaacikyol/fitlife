@@ -23,12 +23,13 @@
                     
                         <table class="border" style="width: 100%;">
                             <tr class="border">
-                                <th colspan="10" class="text-center py-2">TRAINERS</th>
+                                <th colspan="11" class="text-center py-2">TRAINERS</th>
                             </tr>
                             <tr>
                                 <th class="text-center border">Order</th>
                                 <th class="text-center border">Name</th>
                                 <th class="text-center border">Surname</th>
+                                <th class="text-center border">Expertise</th>
                                 <th class="text-center border">Birthdate</th>
                                 <th class="text-center border">Gender</th>
                                 <th class="text-center border">Email</th>
@@ -45,7 +46,7 @@
                                 $delete =  $conn ->  prepare("delete from trainer where id=:id");
                                 $delete -> execute (array("id" => $_GET["del_id"]));
                                 $counter  =   1;
-                                $trainer_info       =   $conn->prepare("select * from trainer order by id");
+                                $trainer_info       =   $conn->prepare("select t.id, t.name, t.surname, t.birthdate, t.gender, t.email, t.phone_number, t.state, e.profession from trainer as t inner join trainer_expertise as te on t.id=te.trainer_id inner join expertise as e on te.expertise_id=e.id order by t.id");
                                 $trainer_info->execute();
                                 while ($results    =   $trainer_info->fetch(PDO::FETCH_ASSOC)) {
                             ?>
@@ -53,6 +54,7 @@
                                     <td class="text-center border"><?php echo $counter ; ?></td>
                                     <td class="text-center border"><?php echo $results["name"] ; ?></td>
                                     <td class="text-center border"><?php echo $results["surname"]; ?></td>
+                                    <td class="text-center border"><?php echo $results["profession"]; ?></td>
                                     <td class="text-center border"><?php echo $results["birthdate"]; ?></td>
                                     <td class="text-center border"><?php echo $results["gender"]; ?></td>
                                     <td class="text-center border"><?php echo $results["email"]; ?></td>
