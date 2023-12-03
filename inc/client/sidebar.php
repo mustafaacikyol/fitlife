@@ -22,8 +22,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="messageDropdown">
                     <!-- Dropdown items for Trainers go here -->
-                    <a class="dropdown-item" href="display-trainer">Incoming Message</a>
-                    <a class="dropdown-item" href="display-trainer">Send Message</a>
+                    <a class="dropdown-item" href="client-incoming-message">Incoming Message</a>
+                    <a class="dropdown-item" href="client-send-message">Send Message</a>
                 </div>
             </li>
             

@@ -1,20 +1,20 @@
 <?php 
     include_once("inc/db_connect.php"); 
-    include_once("inc/client/session.php");
+    include_once("inc/trainer/session.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <?php include_once("inc/head.php"); ?>
-    <title>Client Write Message</title>
+    <title>Trainer Write Message</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
-    <?php include_once("inc/client/header.php") ?>
+    <?php include_once("inc/trainer/header.php") ?>
 
     <div class="container-fluid">
         <div class="row">
-            <?php include_once("inc/client/sidebar.php") ?>
+            <?php include_once("inc/trainer/sidebar.php") ?>
            
             <!-- Main Content -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
@@ -23,14 +23,14 @@
                         if(isset($_POST["sendBtn"])){
                             
                             $add_message = $conn->prepare("insert into message set trainer_id=:trainer_id, client_id=:client_id, direction=:direction, content=:content");
-                            $add_message_result = $add_message->execute(array("trainer_id" => $_GET["id"], "client_id" => $_SESSION["client_id"], "direction"=>0, "content"=>$_POST["message"]));
+                            $add_message_result = $add_message->execute(array("trainer_id" => $_SESSION["id"], "client_id" => $_GET["id"], "direction"=>1, "content"=>$_POST["message"]));
                             
                             if(isset($add_message_result)){
                                 echo "<div class='alert alert-icon alert-success' role='alert'>
                                 <em class='icon ni ni-check-circle'></em> 
                                 <strong>Message Sent</strong> 
                                 </div>";
-                                header("refresh:1;client-write-message");
+                                header("refresh:1;trainer-send-message");
                             }else {
                                 echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                                 <em class='icon ni ni-cross-circle'></em> 

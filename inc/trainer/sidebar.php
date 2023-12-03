@@ -24,8 +24,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="messagesDropdown">
                     <!-- Dropdown items for Clients go here -->
-                    <a class="dropdown-item" href="trainer-incoming-message?id=<?php echo $_SESSION['id'] ?>">Incoming messages</a>
-                    <a class="dropdown-item" href="trainer-sent-message?id=<?php echo $_SESSION['id'] ?>">Sent messages</a>
+                    <a class="dropdown-item" href="trainer-incoming-message">Incoming messages</a>
+                    <a class="dropdown-item" href="trainer-send-message">Send messages</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="trainer-write-message">Write message</a>
                 </div>
