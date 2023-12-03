@@ -21,10 +21,11 @@
                 <div class="content">
                     <table class="border" style="width: 100%;">
                         <tr class="border">
-                            <th colspan="9" class="text-center py-2">CLIENTS</th>
+                            <th colspan="10" class="text-center py-2">CLIENTS</th>
                         </tr>
                         <tr>
                             <th class="text-center border">Order</th>
+                            <th class="text-center border">No</th>
                             <th class="text-center border">Name</th>
                             <th class="text-center border">Surname</th>
                             <th class="text-center border">Target</th>
@@ -42,6 +43,7 @@
                         ?>
                             <tr>
                                 <td class="text-center border"><?php echo $counter ; ?></td>
+                                <td class="text-center border"><?php echo $results["id"] ; ?></td>
                                 <td class="text-center border"><?php echo $results["name"] ; ?></td>
                                 <td class="text-center border"><?php echo $results["surname"]; ?></td>
                                 <td class="text-center border"><?php echo $results["profession"]; ?></td>
