@@ -55,11 +55,6 @@
                     <a class="dropdown-item" href="client-display-graphic">Graphic</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="client-dashboard">
-                    <i class="fas fa-cogs"></i> Settings
-                </a>
-            </li>
         </ul>
     </div>
 </nav>

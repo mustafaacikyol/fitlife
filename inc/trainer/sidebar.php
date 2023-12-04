@@ -46,11 +46,6 @@
                     <a class="dropdown-item" href="trainer-display-nutrition">Display</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="trainer-dashboard">
-                    <i class="fas fa-cogs"></i> Settings
-                </a>
-            </li>
         </ul>
     </div>
 </nav>

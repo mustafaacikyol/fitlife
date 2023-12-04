@@ -30,7 +30,7 @@
                                 <em class='icon ni ni-check-circle'></em> 
                                 <strong>Message Sent</strong> 
                                 </div>";
-                                header("refresh:1;client-write-message");
+                                header("refresh:1;client-send-message");
                             }else {
                                 echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                                 <em class='icon ni ni-cross-circle'></em> 

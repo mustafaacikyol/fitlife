@@ -100,8 +100,8 @@
                             <input type="date" class="form-control" id="start_date" name="start_date" value="<?php echo $_POST['start_date'] ?>" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="image">Duration</label>
-                            <input type="number" class="form-control" name="image" id="image">
+                            <label class="form-label" for="duration">Duration</label>
+                            <input type="number" class="form-control" name="duration" id="duration">
                         </div>
                         <div class="form-group mt-3 mb-5">
                             <button type="submit" class="btn btn-md btn-round btn-primary" name="generateBtn">Generate</button>
