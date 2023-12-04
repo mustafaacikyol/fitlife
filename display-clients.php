@@ -21,7 +21,7 @@
                 <div class="content">
                     <table class="border" style="width: 100%;">
                         <tr class="border">
-                            <th colspan="10" class="text-center py-2">CLIENTS</th>
+                            <th colspan="11" class="text-center py-2">CLIENTS</th>
                         </tr>
                         <tr>
                             <th class="text-center border">Order</th>
@@ -34,6 +34,7 @@
                             <th class="text-center border">Email</th>
                             <th class="text-center border">Phone</th>
                             <th class="text-center border">Message</th>
+                            <th class="text-center border">Progress</th>
                         </tr>
                         <?php
                             $counter = 1;
@@ -52,8 +53,13 @@
                                 <td class="text-center border"><?php echo $results["email"]; ?></td>
                                 <td class="text-center border"><?php echo $results["phone_number"]; ?></td>
                                 <td class="border text-center">
-                                    <a href="update-client?id=<?php echo $results['id']; ?>">
+                                    <a href="trainer-write-message?id=<?php echo $results['id']; ?>">
                                         <i class="fas fa-envelope"></i>
+                                    </a>
+                                </td>
+                                <td class="border text-center">
+                                    <a href="trainer-display-progress?id=<?php echo $results['id']; ?>">
+                                        <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
                             </tr>
