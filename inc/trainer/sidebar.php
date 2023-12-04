@@ -42,8 +42,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="nutritionDropdown">
                     <!-- Dropdown items for Clients go here -->
-                    <a class="dropdown-item" href="clients">Generate</a>
-                    <a class="dropdown-item" href="clients">Display</a>
+                    <a class="dropdown-item" href="generate-nutrition">Generate</a>
+                    <a class="dropdown-item" href="trainer-display-nutrition">Display</a>
                 </div>
             </li>
             <li class="nav-item">

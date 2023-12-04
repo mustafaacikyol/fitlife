@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <?php include_once("inc/head.php"); ?>
-    <title>Client Display Exercise</title>
+    <title>Client Display Nutrition</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
@@ -21,20 +21,18 @@
                 <div class="content">
                     <table class="border" style="width: 100%;">
                         <tr class="border">
-                            <th colspan="7" class="text-center py-2">EXERCISES</th>
+                            <th colspan="5" class="text-center py-2">NUTRITIONS</th>
                         </tr>
                         <tr>
                             <th class="text-center border">Order</th>
                             <th class="text-center border">Name</th>
                             <th class="text-center border">Target</th>
-                            <th class="text-center border">Repetition</th>
-                            <th class="text-center border">Video</th>
-                            <th class="text-center border">Start Date</th>
-                            <th class="text-center border">Duration</th>
+                            <th class="text-center border">Daily Meal</th>
+                            <th class="text-center border">Calorie Target</th>
                         </tr>
                         <?php
                             $counter = 1;
-                            $exercise_info = $conn->prepare("select e.id, e.name, e.repetition, e.video, e.start_date, e.duration, exp.profession from exercise as e inner join client_exercise as ce on e.id=ce.exercise_id inner join expertise as exp on e.target=exp.id where ce.client_id=:client_id order by e.id");
+                            $exercise_info = $conn->prepare("select n.id, n.name, n.daily_meal, n.calorie_target, exp.profession from nutrition as n inner join client_nutrition as cn on n.id=cn.nutrition_id inner join expertise as exp on n.target=exp.id where cn.client_id=:client_id order by n.id");
                             $exercise_info->execute(array("client_id"=>$_SESSION["client_id"]));
                             while ($results = $exercise_info->fetch(PDO::FETCH_ASSOC)) {
                         ?>
@@ -42,10 +40,8 @@
                                 <td class="text-center border"><?php echo $counter ; ?></td>
                                 <td class="text-center border"><?php echo $results["name"] ; ?></td>
                                 <td class="text-center border"><?php echo $results["profession"]; ?></td>
-                                <td class="text-center border"><?php echo $results["repetition"]; ?></td>
-                                <td class="text-center border"><?php echo $results["video"]; ?></td>
-                                <td class="text-center border"><?php echo $results["start_date"]; ?></td>
-                                <td class="text-center border"><?php echo $results["duration"]; ?></td>
+                                <td class="text-center border"><?php echo $results["daily_meal"]; ?></td>
+                                <td class="text-center border"><?php echo $results["calorie_target"]; ?></td>
                             </tr>
                         <?php $counter++;
                         }

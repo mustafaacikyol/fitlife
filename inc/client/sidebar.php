@@ -35,7 +35,15 @@
                     <a class="dropdown-item" href="client-display-exercise">Display</a>
                 </div>
             </li>
-            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="nutritionDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-pizza-slice"></i> Nutrition
+                </a>
+                <div class="dropdown-menu" aria-labelledby="nutritionDropdown">
+                    <!-- Dropdown items for Trainers go here -->
+                    <a class="dropdown-item" href="client-display-nutrition">Display</a>
+                </div>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="client-dashboard">
                     <i class="fas fa-cogs"></i> Settings

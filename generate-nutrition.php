@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <?php include_once("inc/head.php"); ?>
-    <title>Generate Exercise</title>
+    <title>Generate Nutrition</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
@@ -21,26 +21,26 @@
                 <div class="content col-4 text-center" style="margin-left: 350px;">
                     <?php
                         if(isset($_POST["generateBtn"])){
-                            $generate = $conn->prepare("insert into exercise set name=:name, target=:target, repetition=:repetition, video=:video, start_date=:start_date, duration=:duration");
-                            $generate_result = $generate->execute(array("name" => $_POST["name"], "target" => $_POST["target"], "repetition" => $_POST["repetition"], "video" => $_POST["video"], "start_date" => $_POST["start_date"], "duration" => $_POST["duration"]));
+                            $generate = $conn->prepare("insert into nutrition set name=:name, target=:target, daily_meal=:daily_meal, calorie_target=:calorie_target");
+                            $generate_result = $generate->execute(array("name" => $_POST["name"], "target" => $_POST["target"], "daily_meal" => $_POST["daily_meal"], "calorie_target" => $_POST["calorie_target"]));
                             if (isset($generate_result)) {
-                                $get_exercise_id = $conn->prepare("select id from exercise order by id desc limit 1");
-                                $get_exercise_id->execute();
-                                $exercise_id_result = $get_exercise_id->fetch(PDO::FETCH_ASSOC);
+                                $get_nutrition_id = $conn->prepare("select id from nutrition order by id desc limit 1");
+                                $get_nutrition_id->execute();
+                                $nutrition_id_result = $get_nutrition_id->fetch(PDO::FETCH_ASSOC);
                                 
-                                $add_exercise = $conn->prepare("insert into trainer_exercise set trainer_id=:trainer_id, exercise_id=:exercise_id");
-                                $add_exercise_result = $add_exercise->execute(array("exercise_id" => $exercise_id_result["id"], "trainer_id" => $_SESSION["id"]));
+                                $add_nutrition = $conn->prepare("insert into trainer_nutrition set trainer_id=:trainer_id, nutrition_id=:nutrition_id");
+                                $add_nutrition_result = $add_nutrition->execute(array("nutrition_id" => $nutrition_id_result["id"], "trainer_id" => $_SESSION["id"]));
 
-                                if(isset($add_exercise_result)){
+                                if(isset($add_nutrition_result)){
                                     echo "<div class='alert alert-icon alert-success' role='alert'>
                                     <em class='icon ni ni-check-circle'></em> 
-                                    <strong>Exercise generated successfully</strong> 
+                                    <strong>Nutrition generated successfully</strong> 
                                     </div>";
-                                    header("refresh:1;trainer-display-exercise");
+                                    header("refresh:1;trainer-display-nutrition");
                                 }else {
                                     echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                                     <em class='icon ni ni-cross-circle'></em> 
-                                    <strong>Failed to Generate Exercise!</strong>
+                                    <strong>Failed to Generate Nutrition!</strong>
                                     </div>";
                                 }
 
@@ -48,12 +48,12 @@
                             } else {
                                 echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>
                                 <em class='icon ni ni-cross-circle'></em> 
-                                <strong>Failed to Generate Exercise!</strong>
+                                <strong>Failed to Generate Nutrition!</strong>
                                 </div>";
                             }
                         }
                     ?>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="" method="post">
                         <div class="form-group">
                             <label class="form-label" for="name">Name</label>
                             <span class="text-danger">*</span>
@@ -85,23 +85,14 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="repetition">Repetition</label>
+                            <label class="form-label" for="daily_meal">Daily Meal</label>
                             <span class="text-danger">*</span>
-                            <input type="number" class="form-control" id="repetition" name="repetition" value="<?php echo $_POST['repetition'] ?>" required>
+                            <input type="text" class="form-control" id="daily_meal" name="daily_meal" value="<?php echo $_POST['daily_meal'] ?>" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="video">Video</label>
+                            <label class="form-label" for="calorie_target">Calorie Target</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" id="video" name="video" value="<?php echo $_POST['video'] ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="start_date">Start Date</label>
-                            <span class="text-danger">*</span>
-                            <input type="date" class="form-control" id="start_date" name="start_date" value="<?php echo $_POST['start_date'] ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="image">Duration</label>
-                            <input type="number" class="form-control" name="image" id="image">
+                            <input type="number" class="form-control" id="calorie_target" name="calorie_target" value="<?php echo $_POST['calorie_target'] ?>" required>
                         </div>
                         <div class="form-group mt-5 mb-5">
                             <button type="submit" class="btn btn-md btn-round btn-primary" name="generateBtn">Generate</button>

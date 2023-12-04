@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <?php include_once("inc/head.php"); ?>
-    <title>Display Exercise</title>
+    <title>Display Nutrition</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
@@ -21,22 +21,20 @@
                 <div class="content">
                     <table class="border" style="width: 100%;">
                         <tr class="border">
-                            <th colspan="9" class="text-center py-2">EXERCISES</th>
+                            <th colspan="7" class="text-center py-2">NUTRITIONS</th>
                         </tr>
                         <tr>
                             <th class="text-center border">Order</th>
                             <th class="text-center border">Name</th>
                             <th class="text-center border">Target</th>
-                            <th class="text-center border">Repetition</th>
-                            <th class="text-center border">Video</th>
-                            <th class="text-center border">Start Date</th>
-                            <th class="text-center border">Duration</th>
+                            <th class="text-center border">Daily Meal</th>
+                            <th class="text-center border">Calorie Target</th>
                             <th class="text-center border">Update</th>
                             <th class="text-center border">Share</th>
                         </tr>
                         <?php
                             $counter = 1;
-                            $exercise_info = $conn->prepare("select e.id, e.name, e.repetition, e.video, e.start_date, e.duration, exp.profession from exercise as e inner join trainer_exercise as te on e.id=te.exercise_id inner join expertise as exp on e.target=exp.id where te.trainer_id=:trainer_id order by e.id");
+                            $exercise_info = $conn->prepare("select n.id, n.name, n.daily_meal, n.calorie_target, exp.profession from nutrition as n inner join trainer_nutrition as tn on n.id=tn.nutrition_id inner join expertise as exp on n.target=exp.id where tn.trainer_id=:trainer_id order by n.id");
                             $exercise_info->execute(array("trainer_id"=>$_SESSION["id"]));
                             while ($results = $exercise_info->fetch(PDO::FETCH_ASSOC)) {
                         ?>
@@ -44,17 +42,15 @@
                                 <td class="text-center border"><?php echo $counter ; ?></td>
                                 <td class="text-center border"><?php echo $results["name"] ; ?></td>
                                 <td class="text-center border"><?php echo $results["profession"]; ?></td>
-                                <td class="text-center border"><?php echo $results["repetition"]; ?></td>
-                                <td class="text-center border"><?php echo $results["video"]; ?></td>
-                                <td class="text-center border"><?php echo $results["start_date"]; ?></td>
-                                <td class="text-center border"><?php echo $results["duration"]; ?></td>
+                                <td class="text-center border"><?php echo $results["daily_meal"]; ?></td>
+                                <td class="text-center border"><?php echo $results["calorie_target"]; ?></td>
                                 <td class="border text-center">
-                                        <a href="update-exercise?id=<?php echo $results['id']; ?>">
+                                        <a href="update-nutrition?id=<?php echo $results['id']; ?>">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                     </td>
                                 <td class="border text-center">
-                                    <a href="trainer-share-exercise?id=<?php echo $results['id']; ?>">
+                                    <a href="trainer-share-nutrition?id=<?php echo $results['id']; ?>">
                                         <i class="fas fa-share"></i>
                                     </a>
                                 </td>
