@@ -52,6 +52,7 @@
                     <!-- Dropdown items for Trainers go here -->
                     <a class="dropdown-item" href="add-progress">Add</a>
                     <a class="dropdown-item" href="client-display-progress">Display</a>
+                    <a class="dropdown-item" href="client-display-graphic">Graphic</a>
                 </div>
             </li>
             <li class="nav-item">

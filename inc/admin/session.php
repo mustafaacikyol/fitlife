@@ -11,7 +11,7 @@
 
     if ($_GET["user"]=="logout") {
         unset($_SESSION["admin"]);
-        unset($_SESSION["id"]);
+        unset($_SESSION["admin_id"]);
         header("location:index");
     } 
 

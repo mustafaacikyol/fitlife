@@ -21,7 +21,7 @@
                             $name_surname      = $check_arr["name"] . " " . $check_arr["surname"];
                             $id                = $check_arr["id"];
                             $_SESSION["admin"]  = $name_surname;
-                            $_SESSION["id"]    = $id;
+                            $_SESSION["admin_id"]    = $id;
                             header("location:admin-dashboard");
                         } else {
                             echo "<div class='alert alert-icon alert-danger alert-dismissible' role='alert'>

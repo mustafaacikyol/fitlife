@@ -24,7 +24,7 @@
                 <li class="nav-item">
                     <?php
                         $query = $conn->prepare("select profile_photo from admin where id=:id");
-                        $query->execute(array("id" => $_SESSION["id"]));
+                        $query->execute(array("id" => $_SESSION["admin_id"]));
                         $image_result = $query->fetch(PDO::FETCH_ASSOC);
                     ?>
                     <img src="assets/img/admin/<?php echo $image_result['profile_photo'] ?>" alt="Admin Profile" class="profile-photo">

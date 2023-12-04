@@ -2,7 +2,7 @@
     include_once("inc/db_connect.php"); 
     include_once("inc/admin/session.php");
     $query = $conn->prepare("select name, surname, birthdate, gender, email, phone_number, profile_photo, password from admin where id=:id");
-    $query->execute(array("id" => $_SESSION["id"]));
+    $query->execute(array("id" => $_SESSION["admin_id"]));
     $result = $query->fetch(PDO::FETCH_ASSOC);
  ?>
 <!DOCTYPE html>

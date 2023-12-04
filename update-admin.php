@@ -2,7 +2,7 @@
     include_once("inc/db_connect.php"); 
     include_once("inc/admin/session.php");
     $query = $conn->prepare("select name, surname, birthdate, gender, email, phone_number, profile_photo, password from admin where id=:id");
-    $query->execute(array("id" => $_SESSION["id"]));
+    $query->execute(array("id" => $_SESSION["admin_id"]));
     $result = $query->fetch(PDO::FETCH_ASSOC);
  ?>
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
                             if ($_POST["password"] == "" and $_POST["password_again"] == "") {
 
                                 $update   = $conn->prepare("update admin set name=:name, surname=:surname, birthdate=:birthdate, gender=:gender, email=:email, phone_number=:phone_number where id=:id");
-                                $update_result      = $update->execute(array("id" => $_SESSION["id"], "name" => $_POST["name"], "surname" => $_POST["surname"], "birthdate" => $_POST["birthdate"], "gender" => $_POST["gender"], "email" => $_POST["email"], "phone_number" => $_POST["phone_number"]));
+                                $update_result      = $update->execute(array("id" => $_SESSION["admin_id"], "name" => $_POST["name"], "surname" => $_POST["surname"], "birthdate" => $_POST["birthdate"], "gender" => $_POST["gender"], "email" => $_POST["email"], "phone_number" => $_POST["phone_number"]));
 
                                 if ($update_result) {
                                     $name_surname      = $_POST["name"] . " " . $_POST["surname"];
@@ -48,7 +48,7 @@
                                         </div>";
                                 } else {
                                     $update   = $conn->prepare("update admin set name=:name, surname=:surname, birthdate=:birthdate, gender=:gender, email=:email, phone_number=:phone_number, password=:password  where id=:id");
-                                    $update->execute(array("id" => $_SESSION["id"], "name" => $_POST["name"], "surname" => $_POST["surname"], "birthdate" => $_POST["birthdate"], "gender" => $_POST["gender"], "email" => $_POST["email"], "phone_number" => $_POST["phone_number"], "password" => md5($_POST["password"])));
+                                    $update->execute(array("id" => $_SESSION["admin_id"], "name" => $_POST["name"], "surname" => $_POST["surname"], "birthdate" => $_POST["birthdate"], "gender" => $_POST["gender"], "email" => $_POST["email"], "phone_number" => $_POST["phone_number"], "password" => md5($_POST["password"])));
                                     $name_surname      = $_POST["name"] . " " . $_POST["surname"];
                                     $_SESSION["admin"] = $name_surname;
                                     echo "<div class='alert alert-icon alert-success' role='alert'>
