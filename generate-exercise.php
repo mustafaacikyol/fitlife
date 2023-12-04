@@ -103,7 +103,7 @@
                             <label class="form-label" for="image">Duration</label>
                             <input type="number" class="form-control" name="image" id="image">
                         </div>
-                        <div class="form-group mt-5 mb-5">
+                        <div class="form-group mt-3 mb-5">
                             <button type="submit" class="btn btn-md btn-round btn-primary" name="generateBtn">Generate</button>
                         </div>
                     </form>

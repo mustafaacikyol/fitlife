@@ -9,7 +9,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="trainerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-users"></i> Trainer
+                    <i class="fas fa-user"></i> Trainer
                 </a>
                 <div class="dropdown-menu" aria-labelledby="trainerDropdown">
                     <!-- Dropdown items for Trainers go here -->
@@ -42,6 +42,16 @@
                 <div class="dropdown-menu" aria-labelledby="nutritionDropdown">
                     <!-- Dropdown items for Trainers go here -->
                     <a class="dropdown-item" href="client-display-nutrition">Display</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="progressDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bicycle"></i> Progress
+                </a>
+                <div class="dropdown-menu" aria-labelledby="progressDropdown">
+                    <!-- Dropdown items for Trainers go here -->
+                    <a class="dropdown-item" href="add-progress">Add</a>
+                    <a class="dropdown-item" href="client-display-progress">Display</a>
                 </div>
             </li>
             <li class="nav-item">
