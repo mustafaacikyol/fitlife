@@ -23,42 +23,43 @@
                     <!-- Add your content here -->
                     <h2 class="text-center mt-3 mb-5">Admin Dashboard</h2>
                     <?php 
-                        if(isset($_POST["matchBtn"])){
-                            $trainer_info = $conn->prepare("select t.id, t.name, t.surname, t.birthdate, t.gender, t.email, t.phone_number, t.state, e.profession from trainer as t inner join trainer_expertise as te on t.id=te.trainer_id inner join expertise as e on te.expertise_id=e.id order by t.id");
+                        if (isset($_POST["matchBtn"])) {
+                            $trainer_info = $conn->prepare("SELECT t.id, t.name, t.surname, t.birthdate, t.gender, t.email, t.phone_number, t.state, e.profession FROM trainer AS t INNER JOIN trainer_expertise AS te ON t.id=te.trainer_id INNER JOIN expertise AS e ON te.expertise_id=e.id ORDER BY t.id");
                             $trainer_info->execute();
                             $trainer_results = $trainer_info->fetchAll(PDO::FETCH_ASSOC);
-                            $trainers = $trainer_results;
-                            $client_info = $conn->prepare("select c.id, c.name, c.surname, c.birthdate, c.gender, c.email, c.phone_number, c.state, e.profession from client as c inner join client_target as ct on c.id=ct.client_id inner join expertise as e on ct.target_id=e.id order by c.id");
+                        
+                            $client_info = $conn->prepare("SELECT c.id, c.name, c.surname, c.birthdate, c.gender, c.email, c.phone_number, c.state, e.profession FROM client AS c INNER JOIN client_target AS ct ON c.id=ct.client_id INNER JOIN expertise AS e ON ct.target_id=e.id ORDER BY c.id");
                             $client_info->execute();
                             $client_results = $client_info->fetchAll(PDO::FETCH_ASSOC);
+                        
+                            $trainers = $trainer_results;
                             $clients = $client_results;
-
-                            for ($i=0; $i < count($trainers) ; $i++) { 
+                        
+                            foreach ($trainers as $trainer) {
                                 $counter = 0;
-                                $iteration = count($clients);
-                                for ($j=0; $j < $iteration; $j++) { 
-                                    if ($trainers[$i]["profession"] == $clients[$j]["profession"]) {
-                                        $insert_to_match_clients = $conn->prepare("insert into match_clients set trainer_id=:trainer_id, client_id=:client_id");
-                                        $insert_to_match_clients_result = $insert_to_match_clients->execute(array("trainer_id" => $trainers[$i]["id"], "client_id" => $clients[$j]["id"]));
-                                        array_splice($clients, $j, 1);
+                                foreach ($clients as $key => $client) {
+                                    if ($trainer["profession"] == $client["profession"]) {
+                                        $insert_to_match_clients = $conn->prepare("INSERT INTO match_clients SET trainer_id=:trainer_id, client_id=:client_id");
+                                        $insert_to_match_clients_result = $insert_to_match_clients->execute(array("trainer_id" => $trainer["id"], "client_id" => $client["id"]));
+                        
+                                        unset($clients[$key]); // Remove the matched client from the array
                                         $counter++;
-                                        if($counter == 5){
+                                        if ($counter == 5) {
                                             break;
                                         }
                                     }
                                 }
-                                
                             }
-
-                            if(count($clients) == 0){
-                                echo "<div class='alert alert-icon alert-success text-center col-3' role='alert'>
-                                                <em class='icon ni ni-check-circle'></em> 
-                                                <strong>Matching process is completed</strong>. 
-                                            </div>";
-                                    header("refresh:1;url=admin-dashboard");
+                        
+                            if (count($clients) == 0) {
+                                echo "<div class='alert alert-icon alert-success text-center' role='alert'>
+                                            <em class='icon ni ni-check-circle'></em> 
+                                            <strong>Matching process is completed</strong>. 
+                                        </div>";
+                                header("refresh:2;url=admin-dashboard");
                             }
-                            
                         }
+                        
                     ?>
                     <form action="" method="post">
                         <div class="text-center">

@@ -15,8 +15,6 @@
                     <!-- Dropdown items for Trainers go here -->
                     <a class="dropdown-item" href="generate-trainer">Generate</a>
                     <a class="dropdown-item" href="trainers">Display</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Another Trainer</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -27,14 +25,7 @@
                     <!-- Dropdown items for Clients go here -->
                     <a class="dropdown-item" href="generate-client">Generate</a>
                     <a class="dropdown-item" href="clients">Display</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Another Client</a>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="admin-dashboard">
-                    <i class="fas fa-cogs"></i> Settings
-                </a>
             </li>
         </ul>
     </div>

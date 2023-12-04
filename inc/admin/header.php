@@ -14,6 +14,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <!-- Dropdown items go here -->
                         <a class="dropdown-item" href="admin-dashboard"><?php echo($_SESSION["admin"]) ?></a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="admin-information">Profile Information</a>
                         <a class="dropdown-item" href="update-admin">Update Profile</a>
                         <a class="dropdown-item" href="change-admin-image">Change Image</a>
