@@ -6,11 +6,11 @@
 
     $url 	= "http://localhost/fitlife/";
 
-    $host = 'fitlife.cgax1dk8p37y.eu-north-1.rds.amazonaws.com';
-    $port = '3306'; // Typically 3306 for MySQL
-    $dbname = 'fitlife';
-    $username = 'admin';
-    $password = 'fitlife_123';
+    $host = '';
+    $port = ''; // Typically 3306 for MySQL
+    $dbname = '';
+    $username = '';
+    $password = '';
 
     try {
         $conn = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $username, $password);
